@@ -8,8 +8,8 @@ something
 ## Running the Program
 something
 ## About The Creator
-Nama: Aryo Wisanggeni
-NIM: 13523100
+Nama: Aryo Wisanggeni  
+NIM: 13523100  
 Kelas: K02
 
 
