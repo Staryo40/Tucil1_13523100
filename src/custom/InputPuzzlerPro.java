@@ -63,4 +63,20 @@ public class InputPuzzlerPro {
         System.out.println("");
         printPieces(piecesList);
     }
+
+    public char[][] matrixTurnXtoUnd(char[][] board) {
+        char[][] res = new char[board.length][board[0].length];
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == 'X'){
+                    res[i][j] = '_';
+                } else {
+                    res[i][j] = board[i][j];
+                }
+            }
+        }
+
+        return res;
+    }
 }

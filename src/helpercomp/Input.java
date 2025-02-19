@@ -67,23 +67,16 @@ public class Input {
                 while (reader.hasNextLine()) {
                     String line = reader.nextLine();  
                     
-                    if (matrixLines.isEmpty()) {
-                        if (line.contains("X")) {
-                            inMatrix = true;
-                        }
-                    } else {
-                        if (line.contains("X") && line.strip().length() == matrixLines.get(0).length()) {
-                            inMatrix = true;
-                        }
+                    if (line.contains("X") && line.strip().length() == width) {
+                        inMatrix = true;
                     }
-                    
-                    
+                     
                     if (inMatrix) {
                         matrixLines.add(line.strip());
                         inMatrix = false;
                     } else {
                         if (matrixLines.isEmpty()) {
-                            System.out.println("Error: no custom matrix provided");
+                            System.out.println("Error: no custom matrix provided OR matrix provided does not match given width");
                             return null;
                         }
                         lineAfterMatrix = line;
@@ -152,6 +145,9 @@ public class Input {
             }
 
             InputPuzzlerPro res = new InputPuzzlerPro(height, width, numPieces, mode, customBoard, pieces);
+            if (mode.equals("CUSTOM")) {
+                res.customBoard = res.matrixTurnXtoUnd(res.customBoard);
+            }
             return res;
         } catch (FileNotFoundException e) {
             System.out.println("Error: File not found - " + e.getMessage());
