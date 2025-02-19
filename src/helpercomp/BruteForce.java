@@ -1,6 +1,5 @@
 package helpercomp;
 import custom.*;
-import java.io.*;
 import java.util.*;
 
 public class BruteForce {
@@ -28,16 +27,21 @@ public class BruteForce {
         if (pieces.isEmpty()) {
             if (matrixIsFull(currentMatrix)) {
                 OutputPuzzlerPro res = new OutputPuzzlerPro(currentMatrix, 0, 1);
+                // res.printSolutionBoard(currentMatrix);
                 return res;
             } else {
                 OutputPuzzlerPro res = new OutputPuzzlerPro(null, 0, 1);
+                // res.printSolutionBoard(currentMatrix);
                 return res;
             }
         }
 
-        char[][] currentPiece = pieces.remove(0);
+        char[][] currentPiece = pieces.get(0);
+        // printMatrix(currentPiece);
         List<char[][]> currentVariations = getPieceVariations(currentPiece);
+        int countCases = 0;
 
+        // Try all piece variation with rotate and flip
         for (int i = 0; i < currentVariations.size(); i++) {
             int currentWidth = currentVariations.get(i)[0].length;
             int currentHeight = currentVariations.get(i).length;
@@ -45,10 +49,13 @@ public class BruteForce {
             int height = currentMatrix.length - currentHeight + 1;
             int width = currentMatrix[0].length - currentWidth + 1;
 
+            // if doesn't fit because larger than matrix, don't process because it fails here
             if (height <= 0 || width <= 0) {
+                countCases += 1;
                 continue;
             }
 
+            // Checking if the current piece position variation fits for every possible location in matrix
             for (int j = 0; j < height; j++) {
                 for (int k = 0; k < width; k++) {
                     boolean canFit = true;
@@ -56,7 +63,7 @@ public class BruteForce {
                     // determining if currentVariation fits
                     for (int x = 0; x < currentHeight; x++) {
                         for (int y = 0; y < currentWidth; y++) {
-                            if (currentVariations.get(i)[x][y] != '_' && currentMatrix[i + x][j + y] != '_') {
+                            if (currentVariations.get(i)[x][y] != '_' && currentMatrix[j + x][k + y] != '_') {
                                 canFit = false;
                                 break;
                             }
@@ -66,20 +73,24 @@ public class BruteForce {
 
                     // If it fits, place the variation into currentMatrix and continue to the next piece
                     if (canFit) {
-                        char[][] newMatrix = placeVariation(currentMatrix, currentVariations.get(i), i, j);
-                        OutputPuzzlerPro res = processPuzzle(newMatrix, pieces);
+                        char[][] newMatrix = placeVariation(currentMatrix, currentVariations.get(i), j, k);
+                        OutputPuzzlerPro res = processPuzzle(newMatrix, listWithoutFirstElement(pieces));
                         if (res.filledBoardSolution != null) {
+                            res.casesExplored += countCases;
                             return res;
                         } else {
-                            // count up the cases
+                            countCases += res.casesExplored;
                         }
+                    } else { // count case and continue to the next position
+                        countCases += 1;
                     }
-                    // else try fitting it in another spot
                 }
             }
             // if all positions fail, try another variation
         }
         // if all variation fail, return null matrix and how many cases were explored
+        OutputPuzzlerPro res = new OutputPuzzlerPro(null, 0, countCases);
+        return res;
     }
 
     public static char[][] createEmptyMatrix(int height, int width) {
@@ -108,9 +119,52 @@ public class BruteForce {
     }
 
     public static List<char[][]> getPieceVariations(char[][] piece) {
-        List<char[][]> variations;
+        List<char[][]> variations = new ArrayList<>();
+        variations.add(piece);
+
+        // flip
+        char[][] mirroredPieceHorizontal = new char[piece.length][piece[0].length];
+
+        for (int i = 0; i < piece.length; i++) {
+            for (int j = 0; j < piece[0].length; j++) {
+                mirroredPieceHorizontal[i][piece[0].length - j - 1] = piece[i][j];
+            }
+        }
+        variations.add(mirroredPieceHorizontal);
 
         // rotate
+        char[][] oldVar = piece;
+        for (int i = 0; i < 3; i++) {
+            int rows = oldVar.length;
+            int cols = oldVar[0].length;
+            char[][] var = new char[cols][rows];
+
+            for (int j = 0; j < rows; j++) {
+                for (int k = 0; k < cols; k++) {
+                    var[k][rows - 1 - j] = oldVar[j][k];
+                }
+            }
+
+            variations.add(var);
+            oldVar = var;
+        }
+
+        oldVar = mirroredPieceHorizontal;
+        for (int i = 0; i < 3; i++) {
+            int rows = oldVar.length;
+            int cols = oldVar[0].length;
+            char[][] var = new char[cols][rows];
+
+            for (int j = 0; j < rows; j++) {
+                for (int k = 0; k < cols; k++) {
+                    var[k][rows - 1 - j] = oldVar[j][k];
+                }
+            }
+
+            variations.add(var);
+            oldVar = var;
+        }
+        
         return variations;
     }
 
@@ -130,6 +184,47 @@ public class BruteForce {
         }
 
         return newMatrix;
+    }
+
+    public static void printMatrix(char[][] m) {
+        if (m == null) {
+            System.out.println("Matrix: null");
+        } else {
+            System.out.println("Matrix:");
+            for (int i = 0; i < m.length; i++) {
+                for (int j = 0; j < m[i].length; j++) {
+                    System.out.print(m[i][j] + " ");
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    public static List<char[][]> copyListOfMatrix(List<char[][]> originalList) {
+        List<char[][]> copiedList = new ArrayList<>();
+
+        for (char[][] originalMatrix : originalList) {
+            char[][] copiedMatrix = new char[originalMatrix.length][];
+            
+            for (int i = 0; i < originalMatrix.length; i++) {
+                copiedMatrix[i] = new char[originalMatrix[i].length];
+                System.arraycopy(originalMatrix[i], 0, copiedMatrix[i], 0, originalMatrix[i].length);
+            }
+
+            copiedList.add(copiedMatrix);
+        }
+
+        return copiedList;
+    }
+
+    public static List<char[][]> listWithoutFirstElement(List<char[][]> originalList) {
+        // Check if the list is not empty to avoid an IndexOutOfBoundsException
+        if (originalList.isEmpty()) {
+            return new ArrayList<>();  // Return an empty list if the original list is empty
+        }
+
+        // Use subList() to get the elements from index 1 onwards and create a new list
+        return new ArrayList<>(originalList.subList(1, originalList.size()));
     }
 
 }
