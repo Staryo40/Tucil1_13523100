@@ -1,5 +1,5 @@
 package custom;
-import java.util.*;
+import java.io.*;
 
 
 public class OutputPuzzlerPro {
@@ -29,7 +29,7 @@ public class OutputPuzzlerPro {
                                                 "\u001b[38;2;112;130;56m", "\u001b[38;2;245;245;220m","\u001b[38;2;54;69;79m", "\u001b[38;2;0;0;255m", "\u001b[38;2;36;122;253m",
                                                 "\u001b[38;2;255;209;220m"};
 
-    public void printSolutionBoard(char[][] boardSolution) {
+    public static void printSolutionBoard(char[][] boardSolution) {
         if (boardSolution == null) {
             System.out.println("Solution: No solution");
         } else {
@@ -72,4 +72,40 @@ public class OutputPuzzlerPro {
         System.out.printf("Execution Time: %d ms%n", executionTime);
         System.out.println("Number of cases checked: " + casesExplored);
     }
+
+    public void exportDetailsToTxt(String filename) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
+            // Write solution board to file
+            if (filledBoardSolution == null) {
+                System.out.println("Solution: No solution");
+                return;
+            } else {
+                writer.write("Solution:\n");
+                for (int i = 0; i < filledBoardSolution.length; i++) {
+                    for (int j = 0; j < filledBoardSolution[i].length; j++) {
+                        char currentChar = filledBoardSolution[i][j];
+
+                        if (!Character.isUpperCase(currentChar)) {
+                            writer.write("  ");
+                        } else {
+                            writer.write(currentChar + " ");
+                        }
+                    }
+                    writer.newLine();
+                }
+            }
+            
+            writer.newLine();
+
+            // Write execution time and number of cases at the end
+            writer.write("Execution Time: " + executionTime + " ms\n");
+            writer.write("Number of cases checked: " + casesExplored + "\n");
+
+            System.out.println("Solution saved to " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("An error occurred while saving the solution.");
+        }
+    }
+
 }

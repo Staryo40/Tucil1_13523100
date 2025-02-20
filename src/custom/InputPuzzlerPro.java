@@ -79,4 +79,16 @@ public class InputPuzzlerPro {
 
         return res;
     }
+
+    public char[][] createEmptyMatrix() {
+        char[][] matrix = new char[height][width];
+        
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                matrix[i][j] = '_';
+            }
+        }
+
+        return matrix;
+    }
 }

@@ -89,6 +89,11 @@ public class Input {
                     String row = matrixLines.get(i);  
                     customBoard[i] = row.toCharArray();  
                 }
+
+                if (customBoard.length != height) {
+                    System.out.println("Error: Board height does not match given height");
+                    return null;
+                }
             }
 
             // Reading pieces 
@@ -141,6 +146,11 @@ public class Input {
 
             if (pieces.size() != numPieces) {
                 System.out.printf("Error: pieces detected: %d, expected number of pieces: %d%n", pieces.size(), numPieces);
+                return null;
+            }
+
+            if (!isAllPiecesValid(pieces)) {
+                System.out.printf("Error: Invalid piece detected, cells of the piece are not connected%n");
                 return null;
             }
 
@@ -206,4 +216,45 @@ public class Input {
         return '\0'; 
     }
 
+    public static boolean isAllPiecesValid(List<char[][]> pieces) {
+        for (char[][] currentPiece : pieces) {
+            if (currentPiece.length != 1 && currentPiece[0].length != 0) {
+                for (int j = 0; j < currentPiece.length; j++) {
+                    for (int k = 0; k < currentPiece[0].length; k++) {
+                        char currentChar = currentPiece[j][k];
+                        if (Character.isUpperCase(currentChar)) {
+                            boolean valid = false;
+                            // check up
+                            if (j-1 >= 0 && currentChar == currentPiece[j-1][k]) {
+                                valid = true;
+                                continue;
+                            }
+                            // check down
+                            if (j+1 < currentPiece.length && currentChar == currentPiece[j+1][k]) {
+                                valid = true;
+                                continue;
+                            }
+                            // check right
+                            if (k+1 < currentPiece[0].length && currentChar == currentPiece[j][k+1]) {
+                                valid = true;
+                                continue;
+                            }
+                            // check left
+                            if (k-1 >= 0 && currentChar == currentPiece[j][k-1]) {
+                                valid = true;
+                                continue;
+                            }
+
+                            if (!valid) {
+                                // System.out.printf("%s%n", currentChar);
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // System.out.println("true ran");
+        return true;
+    }
 }
