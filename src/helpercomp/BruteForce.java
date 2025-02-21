@@ -3,19 +3,19 @@ import custom.*;
 import java.util.*;
 
 public class BruteForce {
-    public static OutputPuzzlerPro getOutput(InputPuzzlerPro input) {
+    public static OutputPuzzlerPro getOutput(InputFormat form) {
         char[][] beginningMat;
-        if (input.mode.equals("DEFAULT")) {
-            beginningMat = createEmptyMatrix(input.height, input.width);
-        } else if (input.mode.equals("CUSTOM")) {
-            beginningMat = input.customBoard;
+        if (form.input.mode.equals("DEFAULT")) {
+            beginningMat = createEmptyMatrix(form.input.height, form.input.width);
+        } else if (form.input.mode.equals("CUSTOM")) {
+            beginningMat = form.input.customBoard;
         } else {
-            System.out.printf("Error: %s is not a valid case%n", input.mode);
+            System.out.printf("Error: %s is not a valid case%n", form.input.mode);
             return null;
         }
 
         long startTime = System.currentTimeMillis();
-        OutputPuzzlerPro res = processPuzzle(beginningMat, input.piecesList);
+        OutputPuzzlerPro res = processPuzzle(beginningMat, form.input.piecesList);
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
         res.executionTime = duration;

@@ -1,10 +1,10 @@
 package helpercomp;
-import custom.InputPuzzlerPro;
+import custom.*;
 import java.io.*;
 import java.util.*;
 
 public class Input {
-    public static InputPuzzlerPro readTxt(String filename) {
+    public static InputFormat readTxt(String filename) {
         try {
             File file = new File(filename);
             Scanner reader = new Scanner(file);
@@ -23,18 +23,24 @@ public class Input {
                     numPieces = Integer.parseInt(parts[2]);
 
                     if (height <= 0 || width <= 0) {
-                        System.out.println("Error: matrix dimension zero or negative");
-                        return null;
+                        String errormessage = "Error: matrix dimension zero or negative";
+                        System.out.println(errormessage);
+                        InputFormat err = new InputFormat(null, errormessage);
+                        return err;
                     }
 
                     if (numPieces <= 0 || numPieces > 26) {
-                        System.out.println("Error: number of pieces is not in range 1 to 26");
-                        return null;
+                        String errormessage = "Error: matrix dimension zero or negative";
+                        System.out.println(errormessage);
+                        InputFormat err = new InputFormat(null, errormessage);
+                        return err;
                     }
                     
                 } else {
-                    System.out.println("Error: first line does not contain three integers");
-                    return null;
+                    String errormessage = "Error: first line does not contain three integers";
+                    System.out.println(errormessage);
+                    InputFormat err = new InputFormat(null, errormessage);
+                    return err;
                 }
             }
 
@@ -51,8 +57,10 @@ public class Input {
                         mode = "CUSTOM";
                         break;
                     default:
-                        System.out.printf("Error: %s is not a valid case%n", line);
-                        return null;
+                        String errormessage = "Error: " + line + " is not a valid case";
+                        System.out.println(errormessage);
+                        InputFormat err = new InputFormat(null, errormessage);
+                        return err;
                 }
             }
 
@@ -76,8 +84,10 @@ public class Input {
                         inMatrix = false;
                     } else {
                         if (matrixLines.isEmpty()) {
-                            System.out.println("Error: no custom matrix provided OR matrix provided does not match given width");
-                            return null;
+                            String errormessage = "Error: no custom matrix provided OR matrix provided does not match given width";
+                            System.out.println(errormessage);
+                            InputFormat err = new InputFormat(null, errormessage);
+                            return err;
                         }
                         lineAfterMatrix = line;
                         break;
@@ -91,8 +101,10 @@ public class Input {
                 }
 
                 if (customBoard.length != height) {
-                    System.out.println("Error: Board height does not match given height");
-                    return null;
+                    String errormessage = "Error: Board height does not match given height";
+                    System.out.println(errormessage);
+                    InputFormat err = new InputFormat(null, errormessage);
+                    return err;
                 }
             }
 
@@ -110,9 +122,10 @@ public class Input {
                 if (isPiecePartValid(line)){
                     piecesCandidate.add(line);
                 } else {
-                    System.out.println("Error: invalid piece detected -> has different characters in one row OR not a capital alphabet");
-                    System.out.printf("Error piece: %s%n", line);
-                    return null;
+                    String errormessage = "Error: invalid piece detected -> has different characters in one row OR not a capital alphabet, error piece: " + line;
+                    System.out.println(errormessage);
+                    InputFormat err = new InputFormat(null, errormessage);
+                    return err;
                 }
 
                 if (reader.hasNextLine()) {
@@ -145,26 +158,37 @@ public class Input {
             }
 
             if (pieces.size() != numPieces) {
-                System.out.printf("Error: pieces detected: %d, expected number of pieces: %d%n", pieces.size(), numPieces);
-                return null;
+                String errormessage = "Error: pieces detected: " + pieces.size() + ", expected number of pieces: " + numPieces;
+                System.out.println(errormessage);
+                InputFormat err = new InputFormat(null, errormessage);
+                return err;
             }
 
             if (!isAllPiecesValid(pieces)) {
-                System.out.printf("Error: Invalid piece detected, cells of the piece are not connected%n");
-                return null;
+                String errormessage = "Error: Invalid piece detected, cells of the piece are not connected";
+                System.out.println(errormessage);
+                InputFormat err = new InputFormat(null, errormessage);
+                return err;
             }
 
             InputPuzzlerPro res = new InputPuzzlerPro(height, width, numPieces, mode, customBoard, pieces);
             if (mode.equals("CUSTOM")) {
                 res.customBoard = res.matrixTurnXtoUnd(res.customBoard);
             }
-            return res;
+
+            InputFormat finalRes = new InputFormat(res, "");
+
+            return finalRes;
         } catch (FileNotFoundException e) {
-            System.out.println("Error: File not found - " + e.getMessage());
-            return null; 
+            String errormessage = "Error: File not found - " + e.getMessage();
+            System.out.println(errormessage);
+            InputFormat err = new InputFormat(null, errormessage);
+            return err;
         } catch (NumberFormatException e) {
-            System.out.println("Error: Invalid number format - " + e.getMessage());
-            return null; 
+            String errormessage = "Error: File not found - " + e.getMessage();
+            System.out.println(errormessage);
+            InputFormat err = new InputFormat(null, errormessage);
+            return err;
         }
     }
 

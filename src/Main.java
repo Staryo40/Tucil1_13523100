@@ -1,11 +1,13 @@
 import helpercomp.*;
 import custom.*;
+import gui.*;
 import java.util.*;
 import jdk.jshell.spi.SPIResolutionException;
 
 public class Main {
     public static void main(String[] args) {
-        InputPuzzlerPro input = Input.readTxt("../test/test1custom.txt");
+        // InputFormat form = Input.readTxt("../test/test1default.txt");
+        // InputPuzzlerPro input = form.input;
 
         // INPUT TEST
         // input.printDetails();
@@ -25,9 +27,13 @@ public class Main {
         // OutputTxt.output(input, output, filename);
 
         // IMAGE OUTPUT TEST
-        OutputPuzzlerPro output = BruteForce.getOutput(input);
-        String filename = "../test/solutionBoard.png";
-        output.printDetails();
-        OutputImage.solutionImage(output.filledBoardSolution, filename, "LIGHT");
+        // OutputPuzzlerPro output = BruteForce.getOutput(input);
+        // String filename = "../test/solutionBoard1.png";
+        // output.printDetails();
+        // OutputImage.solutionImage(output.filledBoardSolution, filename, "DARK");
+
+        // GUI
+        new MainFrame();  
+        // InputImageGenerator.saveInput(input);
     }
 }
