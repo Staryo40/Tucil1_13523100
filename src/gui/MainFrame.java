@@ -127,8 +127,8 @@ public class MainFrame extends JFrame {
         chooseFileButton.setMaximumSize(new Dimension(200, 40));
         uploadFileButton.setMaximumSize(new Dimension(200, 40));
 
-        chooseFileButton.setBackground(new Color(0, 122, 255));  
-        uploadFileButton.setBackground(new Color(0, 122, 255));  
+        chooseFileButton.setBackground(Color.BLACK);  
+        uploadFileButton.setBackground(Color.BLACK);  
         chooseFileButton.setFont(new Font("Arial", Font.PLAIN, 15));  
         uploadFileButton.setFont(new Font("Arial", Font.PLAIN, 15));  
         chooseFileButton.setForeground(Color.WHITE);  

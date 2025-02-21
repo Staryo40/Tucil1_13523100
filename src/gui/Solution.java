@@ -89,8 +89,8 @@ public class Solution extends JFrame {
         infoPanel.setBackground(Color.WHITE);
         infoPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
 
-        infoPanel.setPreferredSize(new Dimension(400, 100));
-        infoPanel.setMaximumSize(new Dimension(400, 100));
+        infoPanel.setPreferredSize(new Dimension(600, 100));
+        infoPanel.setMaximumSize(new Dimension(600, 100));
 
         // Create the execution time label
         JLabel executionTimeLabel = new JLabel("Execution Time = " + output.executionTime + " ms");
@@ -110,17 +110,19 @@ public class Solution extends JFrame {
 
         // Bottom Panel with buttons
         JPanel bottomPanel = new JPanel();
-        bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));  
+        bottomPanel.setLayout(new GridLayout(1, 2, 10, 10));  // 1 row, 2 columns, 10px horizontal and vertical gap
+        bottomPanel.setBackground(Color.WHITE);
+        bottomPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
 
         // Button for saving the solution as text and image
         JButton saveTextButton = new JButton("Save Solution Text");
         JButton saveImageButton = new JButton("Save Solution Image");
 
-        saveTextButton.setMaximumSize(new Dimension(200, 40));
-        saveImageButton.setMaximumSize(new Dimension(200, 40));
+        saveTextButton.setMaximumSize(new Dimension(300, 100));
+        saveImageButton.setMaximumSize(new Dimension(300, 100));
 
-        saveTextButton.setBackground(new Color(0, 122, 255));  
-        saveImageButton.setBackground(new Color(0, 122, 255));  
+        saveTextButton.setBackground(Color.BLACK);  
+        saveImageButton.setBackground(Color.BLACK);  
         saveTextButton.setFont(new Font("Arial", Font.PLAIN, 15));  
         saveImageButton.setFont(new Font("Arial", Font.PLAIN, 15));  
         saveTextButton.setForeground(Color.WHITE);  
@@ -174,7 +176,7 @@ public class Solution extends JFrame {
 
         // mainPanel
         JPanel mainPanel = new JPanel(new BorderLayout(20, 20));
-        mainPanel.setBackground(new Color(230, 230, 230));
+        mainPanel.setBackground(new Color(240, 240, 240));
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // Add all the components to the main panel
