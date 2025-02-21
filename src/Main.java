@@ -34,6 +34,5 @@ public class Main {
 
         // GUI
         new MainFrame();  
-        // InputImageGenerator.saveInput(input);
     }
 }

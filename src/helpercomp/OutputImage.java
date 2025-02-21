@@ -152,4 +152,103 @@ public class OutputImage {
         frame.add(new JLabel(new ImageIcon(image)));
         frame.setVisible(true);
     }
+
+    public static void solutionDisplayImage(char[][] solutionBoard, String filename, String mode) {
+        int cellSize = 40; // Size of each cell 
+        int padding = 5;  // Padding between cells
+        int edgePadding = 20; // Padding at edge of image 
+        int fontSize = 20; // Font size for letters inside of the cells
+
+        int rows = solutionBoard.length;
+        int cols = solutionBoard[0].length;
+
+        // Calculate the width and height of the image based on the matrix size
+        int imageWidth = (cols * cellSize) + ((cols - 1) * padding) + 2 * edgePadding;
+        int imageHeight = (rows * cellSize) + ((rows - 1) * padding) + 2 * edgePadding;
+
+        BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = image.createGraphics();
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+
+        if (mode.equals("DARK")) {
+            g2d.setColor(Color.BLACK);
+        } else {
+            g2d.setColor(Color.WHITE);
+        }
+        
+        g2d.fillRect(0, 0, imageWidth, imageHeight);
+        
+        // Set font and stroke for circle cell
+        g2d.setFont(new Font("Arial", Font.PLAIN, fontSize));
+        g2d.setStroke(new BasicStroke(2));
+
+        // Calculate the starting positions to center the matrix
+        int startX = edgePadding;
+        int startY = edgePadding;
+
+        // + (imageWidth - (cols * (cellSize + padding) + edgePadding)) / 2;
+        // + (imageHeight - (rows * (cellSize + padding) + edgePadding)) / 2;
+
+        // Iterate through the matrix and draw circles for capital letters
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                char currentChar = solutionBoard[i][j];
+                int centerX = startX + j * (cellSize + padding) + cellSize / 2;
+                int centerY = startY + i * (cellSize + padding) + cellSize / 2;
+
+                // Draw a circle only for capital letters
+                if (Character.isUpperCase(currentChar)) {
+                    int charIndex = currentChar - 'A';
+                    g2d.setColor(COLORS[charIndex]);
+
+                    g2d.fillOval(centerX - cellSize / 2, centerY - cellSize / 2, cellSize, cellSize); // Draw circle
+                    g2d.setColor(Color.WHITE); // Draw letter in white inside the circle
+
+                    FontMetrics fontMetrics = g2d.getFontMetrics();
+                    int charWidth = fontMetrics.charWidth(currentChar);
+                    int charX = centerX - (charWidth / 2); 
+                    int baselineY = centerY + (fontMetrics.getAscent() - fontMetrics.getDescent()) / 2;
+
+                    g2d.drawString(String.valueOf(currentChar), charX, baselineY); // Draw the letter
+
+                    // Draw Links
+                    // Up (i-1, j)
+                    if (i > 0 && solutionBoard[i-1][j] == currentChar) {
+                        drawLinkBetweenCells(g2d, centerX, centerY - cellSize/2, centerX, centerY - (cellSize/2 + padding), COLORS[charIndex]);
+                    }
+                    // Down (i+1, j)
+                    if (i < rows - 1 && solutionBoard[i+1][j] == currentChar) {
+                        drawLinkBetweenCells(g2d, centerX, centerY + cellSize/2, centerX, centerY + (cellSize/2 + padding), COLORS[charIndex]);
+                    }
+                    // Left (i, j-1)
+                    if (j > 0 && solutionBoard[i][j-1] == currentChar) {
+                        drawLinkBetweenCells(g2d, centerX - cellSize/2, centerY, centerX - (cellSize/2 + padding), centerY, COLORS[charIndex]);
+                    }
+                    // Right (i, j+1)
+                    if (j < cols - 1 && solutionBoard[i][j+1] == currentChar) {
+                        drawLinkBetweenCells(g2d, centerX + cellSize/2, centerY, centerX + (cellSize/2 + padding), centerY, COLORS[charIndex]);
+                    }
+                } else {
+                    if (mode.equals("DARK")) {
+                        g2d.setColor(Color.BLACK);
+                    } else {
+                        g2d.setColor(Color.WHITE);
+                    }
+                    g2d.fillRect(centerX - cellSize / 2, centerY - cellSize / 2, cellSize, cellSize); // Clear the area
+                }
+                
+            }
+        }
+
+        g2d.dispose();
+
+        try {
+            ImageIO.write(image, "PNG", new File(filename));
+            System.out.println("Image saved as " + filename);
+        } catch (IOException e) {
+            System.out.println("Error saving the image: " + e.getMessage());
+        }
+
+    }
 }

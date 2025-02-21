@@ -164,12 +164,12 @@ public class Input {
                 return err;
             }
 
-            if (!isAllPiecesValid(pieces)) {
-                String errormessage = "Error: Invalid piece detected, cells of the piece are not connected";
-                System.out.println(errormessage);
-                InputFormat err = new InputFormat(null, errormessage);
-                return err;
-            }
+            // if (!isAllPiecesValid(pieces)) {
+            //     String errormessage = "Error: Invalid piece detected, cells of the piece are not connected";
+            //     System.out.println(errormessage);
+            //     InputFormat err = new InputFormat(null, errormessage);
+            //     return err;
+            // }
 
             InputPuzzlerPro res = new InputPuzzlerPro(height, width, numPieces, mode, customBoard, pieces);
             if (mode.equals("CUSTOM")) {
@@ -240,45 +240,45 @@ public class Input {
         return '\0'; 
     }
 
-    public static boolean isAllPiecesValid(List<char[][]> pieces) {
-        for (char[][] currentPiece : pieces) {
-            if (currentPiece.length != 1 && currentPiece[0].length != 0) {
-                for (int j = 0; j < currentPiece.length; j++) {
-                    for (int k = 0; k < currentPiece[0].length; k++) {
-                        char currentChar = currentPiece[j][k];
-                        if (Character.isUpperCase(currentChar)) {
-                            boolean valid = false;
-                            // check up
-                            if (j-1 >= 0 && currentChar == currentPiece[j-1][k]) {
-                                valid = true;
-                                continue;
-                            }
-                            // check down
-                            if (j+1 < currentPiece.length && currentChar == currentPiece[j+1][k]) {
-                                valid = true;
-                                continue;
-                            }
-                            // check right
-                            if (k+1 < currentPiece[0].length && currentChar == currentPiece[j][k+1]) {
-                                valid = true;
-                                continue;
-                            }
-                            // check left
-                            if (k-1 >= 0 && currentChar == currentPiece[j][k-1]) {
-                                valid = true;
-                                continue;
-                            }
+    // public static boolean isAllPiecesValid(List<char[][]> pieces) {
+    //     for (char[][] currentPiece : pieces) {
+    //         if (currentPiece.length != 1 && currentPiece[0].length != 0) {
+    //             for (int j = 0; j < currentPiece.length; j++) {
+    //                 for (int k = 0; k < currentPiece[0].length; k++) {
+    //                     char currentChar = currentPiece[j][k];
+    //                     if (Character.isUpperCase(currentChar)) {
+    //                         boolean valid = false;
+    //                         // check up
+    //                         if (j-1 >= 0 && currentChar == currentPiece[j-1][k]) {
+    //                             valid = true;
+    //                             continue;
+    //                         }
+    //                         // check down
+    //                         if (j+1 < currentPiece.length && currentChar == currentPiece[j+1][k]) {
+    //                             valid = true;
+    //                             continue;
+    //                         }
+    //                         // check right
+    //                         if (k+1 < currentPiece[0].length && currentChar == currentPiece[j][k+1]) {
+    //                             valid = true;
+    //                             continue;
+    //                         }
+    //                         // check left
+    //                         if (k-1 >= 0 && currentChar == currentPiece[j][k-1]) {
+    //                             valid = true;
+    //                             continue;
+    //                         }
 
-                            if (!valid) {
-                                // System.out.printf("%s%n", currentChar);
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        // System.out.println("true ran");
-        return true;
-    }
+    //                         if (!valid) {
+    //                             // System.out.printf("%s%n", currentChar);
+    //                             return false;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     // System.out.println("true ran");
+    //     return true;
+    // }
 }

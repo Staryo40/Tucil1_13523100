@@ -61,7 +61,7 @@ public class Solution extends JFrame {
 
         // Check if the solution board is available
         if (output.filledBoardSolution != null) {
-            OutputImage.solutionImage(output.filledBoardSolution, filename, "LIGHT");
+            OutputImage.solutionDisplayImage(output.filledBoardSolution, filename, "LIGHT");
 
             ImageIcon boardImageIcon = new ImageIcon(filename);
             JLabel boardImageLabel = new JLabel(boardImageIcon);
@@ -183,6 +183,10 @@ public class Solution extends JFrame {
         mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(centerPanel, BorderLayout.CENTER);
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        JScrollPane scrollPane = new JScrollPane(mainPanel);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         setTitle("Peak Brute Force IQ Puzzler Pro Solver Solution (Def not brain rot fr fr)");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
