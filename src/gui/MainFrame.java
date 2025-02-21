@@ -9,6 +9,7 @@ import helpercomp.*;
 import custom.*;
 import java.nio.file.Files;
 import javax.print.attribute.standard.OutputDeviceAssigned;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MainFrame extends JFrame {
 
@@ -168,11 +169,14 @@ public class MainFrame extends JFrame {
             }
         });
 
+        AtomicReference<InputFormat> formRef = new AtomicReference<>(null);
+
         // Upload file button functionality
         uploadFileButton.addActionListener((ActionEvent e) -> {
             if (selectedFile != null) {
                 System.out.println("Uploading file: " + selectedFile.getAbsolutePath());
                 InputFormat form = Input.readTxt(selectedFile.getAbsolutePath());
+                formRef.set(form);  
                 InputPuzzlerPro input = form.input;
 
                 if (input == null) {
@@ -269,9 +273,8 @@ public class MainFrame extends JFrame {
         solveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (selectedFile != null) {
-                    InputFormat form = Input.readTxt(selectedFile.getAbsolutePath());
-
+                if (selectedFile != null && formRef.get() != null) {
+                    InputFormat form = formRef.get();
                     if (form.input == null) {
                         JOptionPane.showMessageDialog(MainFrame.this, form.errorMessage,
                         "Error", JOptionPane.ERROR_MESSAGE);
