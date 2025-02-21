@@ -6,9 +6,8 @@ There are two main components to this game:
 2. Pieces: These pieces have a variety of shapes, the player needs to find the combination of position, rotation, mirror of the pieces to find the solution  
 In this program, the solution of this puzzle is solved with the Brute Force Algorithm, or by trying every combination possible until a solution is found, or every combination is tried and no solution is found.
 <p align="center">
-<img src="https://drive.google.com/uc?id=17tN1TBjBFkDjAdhBCuTvyi8H96GfBQpL" alt="IQ Puzzler Pro" width="400"/>
-<img src="https://drive.google.com/uc?id=1bERJlzYuZ2FV9wE5jER64L1RGqww0fmI" alt="Example input interface" width="400"/>
-<img src="https://drive.google.com/uc?id=1NxiX1kVChxGe27yWY1fGYa6h878NSb5S" alt="Example output interface" width="400"/>
+<img src="https://drive.google.com/uc?id=1bERJlzYuZ2FV9wE5jER64L1RGqww0fmI" alt="Example input interface" width="500"/>
+<img src="https://drive.google.com/uc?id=1NxiX1kVChxGe27yWY1fGYa6h878NSb5S" alt="Example output interface" width="500"/>
 </p>
 ## Program Requirements
 1. Java Runtime Environment (JRE) 
