@@ -4,10 +4,12 @@ IQ Puzzler Pro is a board game that is produced by Smart Games. The goal of this
 There are two main components to this game:  
 1. Board: This is where the pieces are fit into
 2. Pieces: These pieces have a variety of shapes, the player needs to find the combination of position, rotation, mirror of the pieces to find the solution  
-In this program, the solution of this puzzle is solved with the Brute Force Algorithm, or by trying every combination possible until a solution is found, or every combination is tried and no solution is found.  
-<img src="https://drive.google.com/uc?id=17tN1TBjBFkDjAdhBCuTvyi8H96GfBQpL" alt="IQ Puzzler Pro" width="300"/>
-<img src="https://drive.google.com/uc?id=1bERJlzYuZ2FV9wE5jER64L1RGqww0fmI" alt="Example input interface" width="300"/>
-<img src="https://drive.google.com/uc?id=1NxiX1kVChxGe27yWY1fGYa6h878NSb5S" alt="Example output interface" width="300"/>
+In this program, the solution of this puzzle is solved with the Brute Force Algorithm, or by trying every combination possible until a solution is found, or every combination is tried and no solution is found.
+<p align="center">
+<img src="https://drive.google.com/uc?id=17tN1TBjBFkDjAdhBCuTvyi8H96GfBQpL" alt="IQ Puzzler Pro" width="400"/>
+<img src="https://drive.google.com/uc?id=1bERJlzYuZ2FV9wE5jER64L1RGqww0fmI" alt="Example input interface" width="400"/>
+<img src="https://drive.google.com/uc?id=1NxiX1kVChxGe27yWY1fGYa6h878NSb5S" alt="Example output interface" width="400"/>
+</p>
 ## Program Requirements
 1. Java Runtime Environment (JRE) 
 2. Java Development Kit (JDK) (to compile the program)
