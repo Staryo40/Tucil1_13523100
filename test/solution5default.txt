@@ -1,0 +1,13 @@
+Input Board:
+_ _ _ 
+_ _ _ 
+_ _ _ 
+
+Pieces List:
+Piece 1:
+A A A A 
+
+Solution: No solution
+
+Execution Time: 0 ms
+Number of cases checked: 8

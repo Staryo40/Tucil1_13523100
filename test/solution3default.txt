@@ -1,0 +1,39 @@
+Input Board:
+_ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ 
+
+Pieces List:
+Piece 1:
+A A A A _ _ A 
+A _ _ A _ _ A 
+A A A A A A A 
+A _ _ _ _ _ _ 
+Piece 2:
+B B 
+Piece 3:
+C _ 
+_ C 
+Piece 4:
+_ D 
+D _ 
+Piece 5:
+E E E E E E 
+Piece 6:
+_ _ _ _ _ _ _ F 
+_ _ _ _ _ _ _ F 
+_ _ _ _ _ _ _ F 
+_ _ _ _ _ _ _ F 
+F F F F F F F F 
+
+Solution:
+A A A A C D A F 
+A B B A D C A F 
+A A A A A A A F 
+A E E E E E E F 
+F F F F F F F F 
+
+Execution Time: 21 ms
+Number of cases checked: 178050

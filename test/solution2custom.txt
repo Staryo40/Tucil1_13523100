@@ -1,0 +1,72 @@
+Input Board:
+_ _ _ _ _ 
+_ _ _ _ _ 
+_ _ _ _ _ 
+_ _ _ _ _ 
+_ _ _ _ _ 
+_         
+
+Pieces List:
+Piece 1:
+A 
+Piece 2:
+B 
+Piece 3:
+C 
+Piece 4:
+D 
+Piece 5:
+E 
+Piece 6:
+F 
+Piece 7:
+G 
+Piece 8:
+H 
+Piece 9:
+I 
+Piece 10:
+J 
+Piece 11:
+K 
+Piece 12:
+L 
+Piece 13:
+M 
+Piece 14:
+N 
+Piece 15:
+O 
+Piece 16:
+P 
+Piece 17:
+Q 
+Piece 18:
+R 
+Piece 19:
+S 
+Piece 20:
+T 
+Piece 21:
+U 
+Piece 22:
+V 
+Piece 23:
+W 
+Piece 24:
+X 
+Piece 25:
+Y 
+Piece 26:
+Z 
+
+Solution:
+A B C D E 
+F G H I J 
+K L M N O 
+P Q R S T 
+U V W X Y 
+Z         
+
+Execution Time: 1 ms
+Number of cases checked: 326

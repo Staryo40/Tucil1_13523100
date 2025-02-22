@@ -35,7 +35,6 @@ public class InputImageGenerator {
         new Color(30, 144, 255),   // dodgerblue
         new Color(96, 58, 64),  // Eggplant
         new Color(221, 160, 221),   // plum
-
     };
 
     public static void saveInput (InputPuzzlerPro input) {

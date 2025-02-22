@@ -1,0 +1,32 @@
+Input Board:
+      _       
+  _ _ _ _ _   
+_ _ _ _ _ _ _ 
+  _ _ _ _ _   
+      _       
+
+Pieces List:
+Piece 1:
+A _ _ 
+A A A 
+Piece 2:
+B B _ 
+B B B 
+Piece 3:
+C C C C 
+_ C _ _ 
+Piece 4:
+D 
+Piece 5:
+E E E 
+E _ _ 
+
+Solution:
+      A       
+  B B A A A   
+B B B C C C C 
+  E E E C D   
+      E       
+
+Execution Time: 6 ms
+Number of cases checked: 32594

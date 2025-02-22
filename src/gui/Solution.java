@@ -156,19 +156,24 @@ public class Solution extends JFrame {
         saveImageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fileChooser = new JFileChooser(currentDirFile);
-                fileChooser.setDialogTitle("Choose a location to save the solution image");
-                fileChooser.setSelectedFile(new File("solution.png"));
+                if (output.filledBoardSolution != null) {
+                    JFileChooser fileChooser = new JFileChooser(currentDirFile);
+                    fileChooser.setDialogTitle("Choose a location to save the solution image");
+                    fileChooser.setSelectedFile(new File("solution.png"));
 
-                int returnValue = fileChooser.showSaveDialog(null);
-                if (returnValue == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    // Ensure the file has the ".png" extension
-                    if (!selectedFile.getName().endsWith(".png")) {
-                        selectedFile = new File(selectedFile.getAbsolutePath() + ".png");
+                    int returnValue = fileChooser.showSaveDialog(null);
+                    if (returnValue == JFileChooser.APPROVE_OPTION) {
+                        File selectedFile = fileChooser.getSelectedFile();
+                        // Ensure the file has the ".png" extension
+                        if (!selectedFile.getName().endsWith(".png")) {
+                            selectedFile = new File(selectedFile.getAbsolutePath() + ".png");
+                        }
+                        String fname = selectedFile.getAbsolutePath();
+                        OutputImage.solutionImage(output.filledBoardSolution, fname, "LIGHT");  // Save the image
                     }
-                    String fname = selectedFile.getAbsolutePath();
-                    OutputImage.solutionImage(output.filledBoardSolution, fname, "LIGHT");  // Save the image
+                } else {
+                    JOptionPane.showMessageDialog(Solution.this, "No solution image to save",
+                        "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

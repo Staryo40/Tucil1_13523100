@@ -218,12 +218,10 @@ public class BruteForce {
     }
 
     public static List<char[][]> listWithoutFirstElement(List<char[][]> originalList) {
-        // Check if the list is not empty to avoid an IndexOutOfBoundsException
         if (originalList.isEmpty()) {
-            return new ArrayList<>();  // Return an empty list if the original list is empty
+            return new ArrayList<>(); 
         }
 
-        // Use subList() to get the elements from index 1 onwards and create a new list
         return new ArrayList<>(originalList.subList(1, originalList.size()));
     }
 

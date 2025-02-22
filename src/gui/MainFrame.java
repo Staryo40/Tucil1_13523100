@@ -16,7 +16,6 @@ public class MainFrame extends JFrame {
     private JButton chooseFileButton;
     private JButton uploadFileButton;
     private JButton solveButton;
-    private JLabel leftLabel;
     private File selectedFile = null;
 
     public MainFrame() {
