@@ -1,54 +1,61 @@
 Input Board:
-_ _ _ _ _ _ _ 
-_ _ _ _ _ _ _ 
-_ _ _ _ _ _ _ 
-_ _ _ _ _ _ _ 
-_ _ _ _ _ _ _ 
-_ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ 
 
 Pieces List:
 Piece 1:
+A _ 
+A _ 
 A A 
-A _ 
-A _ 
+_ A 
 Piece 2:
-B _ _ 
-_ B B 
+B B B B 
+B _ _ _ 
 Piece 3:
-_ C _ 
 C _ C 
+C C C 
 Piece 4:
-D 
+D _ _ 
+D D _ 
+_ D D 
 Piece 5:
+_ _ E 
 E E E 
-E E _ 
+_ E _ 
 Piece 6:
-_ _ _ F 
-_ _ _ F 
+_ _ F _ 
 F F F F 
 Piece 7:
-G G 
+G G G 
+_ G _ 
 Piece 8:
-H H 
-H H 
-Piece 9:
 I I I 
-_ I _ 
+I I _ 
+Piece 9:
+_ H 
+H H 
+H _ 
 Piece 10:
-J _ 
 J J 
+_ J 
+_ J 
 Piece 11:
-K K K 
+K K 
+_ K 
 Piece 12:
-L L L L 
+_ _ L 
+_ _ L 
+L L L 
 
 Solution:
-A A B L L L L 
-A D C B B G G 
-A C K C E E E 
-H H K F E E I 
-H H K F J I I 
-F F F F J J I 
+A B B B B F F F F K K 
+A B G G G C F C I I K 
+A A D G E C C C I I L 
+J A D D E E E H H I L 
+J J J D D E H H L L L 
 
-Execution Time: 518037 ms
-Number of cases checked: 1367930463
+Execution Time: 567024 ms
+Number of cases checked: 64025330235

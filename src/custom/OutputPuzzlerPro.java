@@ -5,9 +5,9 @@ import java.io.*;
 public class OutputPuzzlerPro {
     public char[][] filledBoardSolution;
     public long executionTime;
-    public int casesExplored;
+    public long casesExplored;
 
-    public OutputPuzzlerPro(char[][] filledBoardSolution, long executionTime, int casesExplored) {
+    public OutputPuzzlerPro(char[][] filledBoardSolution, long executionTime, long casesExplored) {
         this.filledBoardSolution = filledBoardSolution;
         this.executionTime = executionTime;
         this.casesExplored = casesExplored;

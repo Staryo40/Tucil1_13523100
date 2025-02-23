@@ -39,7 +39,7 @@ public class BruteForce {
         char[][] currentPiece = pieces.get(0);
         // printMatrix(currentPiece);
         List<char[][]> currentVariations = getPieceVariations(currentPiece);
-        int countCases = 0;
+        long countCases = 0;
 
         // Try all piece variation with rotate and flip
         for (int i = 0; i < currentVariations.size(); i++) {
